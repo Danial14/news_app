@@ -132,7 +132,7 @@ class _AndroidIosSmallMobileWebViewHomeState extends State<AndroidIosSmallMobile
                                         padding: EdgeInsets.symmetric(horizontal: size.height * .02),
                                         child: data.articles![position].urlToImage != null ? ClipRRect(
                                           child: CachedNetworkImage(imageUrl: data.articles![position].urlToImage,
-                                            fit: BoxFit.cover,
+                                            fit: BoxFit.fill,
                                             placeholder: (ctx, st){
                                               return SpinKitCircle(color: Colors.blue,);
                                             },
@@ -209,7 +209,7 @@ class _AndroidIosSmallMobileWebViewHomeState extends State<AndroidIosSmallMobile
                                         child: ClipRRect(
                                           borderRadius: BorderRadius.circular(15),
                                           child: verticalList[position].urlToImage != null ? CachedNetworkImage(imageUrl: verticalList[position].urlToImage,
-                                            fit: BoxFit.cover,
+                                            fit: BoxFit.fill,
                                             placeholder: (ctx, st){
                                               return SpinKitCircle(color: Colors.blue,);
                                             },

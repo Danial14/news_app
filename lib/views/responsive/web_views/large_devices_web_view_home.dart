@@ -74,7 +74,7 @@ class _LargeDevicesWebViewHomeState extends State<LargeDevicesWebViewHome> {
                 child: Stack(
                   children: [
                     Container(width: constraints.maxWidth,
-                      height: constraints.maxHeight * 0.1,
+                      height: 60,
                       decoration: BoxDecoration(
                           gradient: LinearGradient(
                               colors: [
@@ -87,7 +87,7 @@ class _LargeDevicesWebViewHomeState extends State<LargeDevicesWebViewHome> {
                         children: [
                           Expanded(
                             child: Container(
-                              height: constraints.maxHeight * 0.06,
+                              height: 60,
                             ),
                           ),
                           Expanded(child: Row(
@@ -128,7 +128,7 @@ class _LargeDevicesWebViewHomeState extends State<LargeDevicesWebViewHome> {
                             children: <Widget>[
                               Expanded(flex: 2,
                                   child: Container(
-                                      //width: constraints.maxWidth * 0.55,
+                                      width: constraints.maxWidth * 0.55,
                                       child: ClipRRect(
                                           borderRadius: BorderRadius.only(
                                               topRight: Radius.circular(35)),
@@ -138,7 +138,7 @@ class _LargeDevicesWebViewHomeState extends State<LargeDevicesWebViewHome> {
                                           )),
                                   )),
                               Expanded(flex: 5, child: Container(
-                                width: constraints.maxWidth * 0.15,
+                                width: constraints.maxWidth * 0.55,
                                 decoration: BoxDecoration(
                                     color: Color(0xffF7F4E7)
                                 ),
@@ -324,7 +324,7 @@ class _LargeDevicesWebViewHomeState extends State<LargeDevicesWebViewHome> {
                                                                     .articles![position]
                                                                     .urlToImage,
                                                                 fit: BoxFit
-                                                                    .cover,
+                                                                    .fill,
                                                                 placeholder: (
                                                                     ctx,
                                                                     st) {
@@ -363,15 +363,17 @@ class _LargeDevicesWebViewHomeState extends State<LargeDevicesWebViewHome> {
                                                               padding: EdgeInsets
                                                                   .only(
                                                                   left: 3),
-                                                              child: Text(data
-                                                                  .articles![position]
-                                                                  .title!,
-                                                                style: GoogleFonts
-                                                                    .poppins(
-                                                                    fontWeight: FontWeight
-                                                                        .w700,
-                                                                    fontSize: 18
-                                                                ),
+                                                              child: Wrap(
+                                                                children: [Text(data
+                                                                    .articles![position]
+                                                                    .title!,
+                                                                  style: GoogleFonts
+                                                                      .poppins(
+                                                                      fontWeight: FontWeight
+                                                                          .w700,
+                                                                      fontSize: 14
+                                                                  ),
+                                                                )],
                                                               )),
                                                         ),
                                                         SizedBox(height: 12,),

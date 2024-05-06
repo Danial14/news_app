@@ -152,11 +152,13 @@ class _AndroidIosMediumMobileTabletWebViewHomeState extends State<AndroidIosMedi
                                             SizedBox(height: 3,),
                                             Expanded(
                                               flex: 2,
-                                              child: Padding(padding: EdgeInsets.only(left: 3),child: Text(data.articles![position].title!,
-                                                style: GoogleFonts.poppins(
-                                                    fontWeight: FontWeight.w700,
-                                                    fontSize: 18
-                                                ),
+                                              child: Padding(padding: EdgeInsets.only(left: 3),child: Wrap(
+                                                children: [Text(data.articles![position].title!,
+                                                  style: GoogleFonts.poppins(
+                                                      fontWeight: FontWeight.w500,
+                                                      fontSize: 14
+                                                  ),
+                                                )],
                                               )),
                                             ),
                                             SizedBox(height: 12,),

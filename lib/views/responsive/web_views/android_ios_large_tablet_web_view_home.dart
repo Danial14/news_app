@@ -56,7 +56,7 @@ class _AndroidIosLargeTabletWebViewHomeState extends State<AndroidIosLargeTablet
             double panelItemsHeight = constraints.maxHeight * 0.07;
             print("max height: ${constraints.maxHeight}");
             if(constraints.maxHeight > 992 && constraints.maxHeight < 1200){
-              panelItemsHeight = constraints.maxHeight * 0.02;
+              panelItemsHeight = constraints.maxHeight * 0.04;
             }
             else if(constraints.maxHeight >= 1200){
               print("max height: ${constraints.maxHeight}");
@@ -69,7 +69,7 @@ class _AndroidIosLargeTabletWebViewHomeState extends State<AndroidIosLargeTablet
                 child: Stack(
                   children: [
                     Container(width: constraints.maxWidth,
-                      height: constraints.maxHeight * 0.1,
+                      height: 60,
                       decoration: BoxDecoration(
                           gradient: LinearGradient(
                               colors: [
@@ -82,7 +82,7 @@ class _AndroidIosLargeTabletWebViewHomeState extends State<AndroidIosLargeTablet
                         children: [
                           Expanded(
                             child: Container(
-                              height: constraints.maxHeight * 0.06,
+                              height: 60,
                             ),
                           ),
                           Expanded(child: Row(
@@ -128,7 +128,7 @@ class _AndroidIosLargeTabletWebViewHomeState extends State<AndroidIosLargeTablet
                                               topRight: Radius.circular(35)),
                                           child: Image.asset(
                                             "assets/images/splash_pic.jpg",
-                                            fit: BoxFit.cover,)))),
+                                            fit: BoxFit.fill,)))),
                               Expanded(flex: 5, child: Container(
                                 width: constraints.maxWidth * 0.15,
                                 decoration: BoxDecoration(
@@ -316,7 +316,7 @@ class _AndroidIosLargeTabletWebViewHomeState extends State<AndroidIosLargeTablet
                                                                     .articles![position]
                                                                     .urlToImage,
                                                                 fit: BoxFit
-                                                                    .cover,
+                                                                    .fill,
                                                                 placeholder: (
                                                                     ctx,
                                                                     st) {
@@ -355,15 +355,18 @@ class _AndroidIosLargeTabletWebViewHomeState extends State<AndroidIosLargeTablet
                                                               padding: EdgeInsets
                                                                   .only(
                                                                   left: 3),
-                                                              child: Text(data
-                                                                  .articles![position]
-                                                                  .title!,
-                                                                style: GoogleFonts
-                                                                    .poppins(
-                                                                    fontWeight: FontWeight
-                                                                        .w700,
-                                                                    fontSize: 18
+                                                              child: Wrap(
+                                                                children: [Text(data
+                                                                    .articles![position]
+                                                                    .title!,
+                                                                  style: GoogleFonts
+                                                                      .poppins(
+                                                                      fontWeight: FontWeight
+                                                                          .w700,
+                                                                      fontSize: 16
+                                                                  ),
                                                                 ),
+                                                                ]
                                                               )),
                                                         ),
                                                         SizedBox(height: 12,),

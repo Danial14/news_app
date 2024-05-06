@@ -67,7 +67,7 @@ class ResponsiveViewManager extends StatelessWidget {
           }
           return WebSplash(AndroidIosLargeTabletWebViewHome());
         }
-        else if(constraints.minWidth >= 992 && constraints.minWidth < 1200){
+        else if(constraints.maxWidth >= 992 && constraints.maxWidth < 1200){
           // web handler large devices such as desktop, laptops
           if(kReleaseMode){
             debugPrint = (String? message, {int? wrapWidth}){
