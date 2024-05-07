@@ -121,13 +121,13 @@ class _ExtraLargeDevicesWebViewHomeState extends State<ExtraLargeDevicesWebViewH
                               itemBuilder: (ctx, position){
                                 return InkWell(
                                   onTap: (){
-                                    /*Navigator.of(context).push(RouteUtil.createRoute(ExtraLargeWebDetailView(data.articles![position].title!,
+                                    Navigator.of(context).push(RouteUtil.createRoute(ExtraLargeWebDetailView(data.articles![position].title!,
                                         data.articles![position].description!,
                                         data.articles![position].source!.name,
                                         DateFormat.yMMMd("en_US").format(DateTime.parse(data.articles![position].publishedAt!)),
                                         data.articles![position].urlToImage,
                                         Constants.ROUTE_HOME
-                                    )));*/
+                                    )));
                                   },
                                   child: Padding(
                                     padding: EdgeInsets.symmetric(horizontal: 8),

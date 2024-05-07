@@ -5,10 +5,12 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
+import '../../../utils/route_util.dart';
 import '../../../view_model/news_view_model.dart';
 import 'android_ios_large_tablet_web_view_home.dart';
 import 'android_ios_medium_mobile_tablet_web_view_home.dart';
 import 'android_ios_small_mobile_web_view_home.dart';
+import 'extra_large_category_web.dart';
 import 'extra_large_devices_web_view_home.dart';
 
 class LargeDevicesWebViewHome extends StatefulWidget {
@@ -105,7 +107,7 @@ class _LargeDevicesWebViewHomeState extends State<LargeDevicesWebViewHome> {
                                 padding: EdgeInsets.only(right: 5),
                                 child: InkWell(
                                   onTap: () {
-                                    //Navigator.of(context).pushReplacement(RouteUtil.createRoute(ExtraLargeWebCategory()));
+                                    Navigator.of(context).pushReplacement(RouteUtil.createRoute(ExtraLargeWebCategory()));
                                   },
                                   child: Image.asset(
                                     "assets/images/category_icon.png",

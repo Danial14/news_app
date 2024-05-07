@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:news_app/views/responsive/web_views/categories_small_view.dart';
 import 'package:news_app/views/responsive/web_views/web_app_drawer.dart';
 import 'package:provider/provider.dart';
 
+import '../../../utils/route_util.dart';
 import '../../../view_model/news_view_model.dart';
 import 'android_ios_large_tablet_web_view_home.dart';
 import 'android_ios_medium_mobile_tablet_web_view_home.dart';
@@ -82,7 +84,7 @@ class _AndroidIosSmallMobileWebViewHomeState extends State<AndroidIosSmallMobile
                   padding: EdgeInsets.only(right: 5),
                   child: InkWell(
                     onTap: (){
-                      //Navigator.of(context).pushReplacement(RouteUtil.createRoute(ExtraLargeWebCategory()));
+                      Navigator.of(context).pushReplacement(RouteUtil.createRoute(CategoriesSmallView()));
                     },
                     child: Image.asset("assets/images/category_icon.png", width: 40,height: 40,),
                   ),
