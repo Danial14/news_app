@@ -6,9 +6,11 @@ import 'package:intl/intl.dart';
 import 'package:news_app/views/responsive/web_views/web_app_drawer.dart';
 import 'package:provider/provider.dart';
 
+import '../../../utils/route_util.dart';
 import '../../../view_model/news_view_model.dart';
 import 'android_ios_large_tablet_web_view_home.dart';
 import 'android_ios_small_mobile_web_view_home.dart';
+import 'categories_medium_view.dart';
 import 'extra_large_devices_web_view_home.dart';
 import 'large_devices_web_view_home.dart';
 
@@ -81,7 +83,7 @@ class _AndroidIosMediumMobileTabletWebViewHomeState extends State<AndroidIosMedi
                   padding: EdgeInsets.only(right: 5),
                   child: InkWell(
                     onTap: (){
-                      //Navigator.of(context).pushReplacement(RouteUtil.createRoute(ExtraLargeWebCategory()));
+                      Navigator.of(context).pushReplacement(RouteUtil.createRoute(CategoriesMediumView()));
                     },
                     child: Image.asset("assets/images/category_icon.png", width: 40,height: 40,),
                   ),

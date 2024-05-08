@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:news_app/views/responsive/web_views/categories_medium_view.dart';
 import 'package:news_app/views/responsive/web_views/web_app_drawer.dart';
 import 'package:provider/provider.dart';
 
@@ -45,7 +46,7 @@ class _CategoriesSmallViewState extends State<CategoriesSmallView> {
         return Container();
       }
       else if(constraints.maxWidth >= 600 && constraints.maxWidth < 768){
-        return Container();
+        return CategoriesMediumView();
       }
       else {
         return Scaffold(
