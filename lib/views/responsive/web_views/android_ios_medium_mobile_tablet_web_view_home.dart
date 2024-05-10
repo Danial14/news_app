@@ -6,11 +6,13 @@ import 'package:intl/intl.dart';
 import 'package:news_app/views/responsive/web_views/web_app_drawer.dart';
 import 'package:provider/provider.dart';
 
+import '../../../constants/constants.dart';
 import '../../../utils/route_util.dart';
 import '../../../view_model/news_view_model.dart';
 import 'android_ios_large_tablet_web_view_home.dart';
 import 'android_ios_small_mobile_web_view_home.dart';
 import 'categories_medium_view.dart';
+import 'extra_large_detail_web.dart';
 import 'extra_large_devices_web_view_home.dart';
 import 'large_devices_web_view_home.dart';
 
@@ -119,13 +121,13 @@ class _AndroidIosMediumMobileTabletWebViewHomeState extends State<AndroidIosMedi
                                 itemBuilder: (ctx, position){
                                   return InkWell(
                                     onTap: (){
-                                      /*Navigator.of(context).push(RouteUtil.createRoute(ExtraLargeWebDetailView(data.articles![position].title!,
+                                      Navigator.of(context).push(RouteUtil.createRoute(ExtraLargeWebDetailView(data.articles![position].title!,
                                         data.articles![position].description!,
                                         data.articles![position].source!.name,
                                         DateFormat.yMMMd("en_US").format(DateTime.parse(data.articles![position].publishedAt!)),
                                         data.articles![position].urlToImage,
                                         Constants.ROUTE_HOME
-                                    )));*/
+                                    )));
                                     },
                                     child: Padding(
                                       padding: EdgeInsets.symmetric(horizontal: 8),
