@@ -7,6 +7,7 @@ import 'package:news_app/views/responsive/web_views/extra_large_category_web.dar
 import 'package:news_app/views/responsive/web_views/home.dart';
 
 import '../../../constants/constants.dart';
+import 'android_ios_medium_mobile_tablet_web_view_home.dart';
 
 class ExtraLargeWebDetailView extends StatelessWidget {
   late String _headlinesTitle;
@@ -35,15 +36,15 @@ class ExtraLargeWebDetailView extends StatelessWidget {
             onWillPop: () async{
               print("back pressed");
               Future.delayed(Duration(seconds: 0), (){
-                switch(_fromWhere){
+                /*switch(_fromWhere){
                   case Constants.ROUTE_CATEGORY:
                     Navigator.of(context).pushReplacement(RouteUtil.createBackRoute(ExtraLargeWebCategory()));
                     break;
                   case Constants.ROUTE_HOME:
                     Navigator.of(context).pushReplacement(RouteUtil.createBackRoute(ExtraLargeWebHomeView()));
                     break;
-                }
-
+                }*/
+                //Navigator.of(context).pushReplacement(RouteUtil.createBackRoute(AndroidIosMediumMobileTabletWebViewHome()));
               });
               return true;
             },
@@ -89,14 +90,15 @@ class ExtraLargeWebDetailView extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          Expanded(child: Text(_headlinesTitle,
-                            style: GoogleFonts.poppins(fontWeight: FontWeight.w500, fontSize: constraints.maxWidth * 0.04,
-                            color: Colors.red
+                          Expanded(child: SingleChildScrollView(
+                            child: Text(_headlinesTitle,
+                              style: GoogleFonts.poppins(fontWeight: FontWeight.w500, fontSize: constraints.maxWidth * 0.04,
+                              ),
                             ),
                           ),
                             flex: 1,
                           ),
-                          // SizedBox(height: 1,),
+                          SizedBox(height: 3,),
                           Expanded(child: SingleChildScrollView(
                             child: Text(_newsDescription,
                               style: GoogleFonts.poppins(fontWeight: FontWeight.w500, fontSize: constraints.maxWidth * 0.02),
@@ -135,15 +137,15 @@ class ExtraLargeWebDetailView extends StatelessWidget {
             onWillPop: () async{
               print("back pressed");
               Future.delayed(Duration(seconds: 0), (){
-                switch(_fromWhere){
+                /*switch(_fromWhere){
                   case Constants.ROUTE_CATEGORY:
                     Navigator.of(context).pushReplacement(RouteUtil.createBackRoute(ExtraLargeWebCategory()));
                     break;
                   case Constants.ROUTE_HOME:
                     Navigator.of(context).pushReplacement(RouteUtil.createBackRoute(ExtraLargeWebHomeView()));
                     break;
-                }
-
+                }*/
+                Navigator.of(context).pushReplacement(RouteUtil.createBackRoute(AndroidIosMediumMobileTabletWebViewHome()));
               });
               return true;
             },
@@ -189,17 +191,15 @@ class ExtraLargeWebDetailView extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          Expanded(child: Wrap(
-                            children: [Text(_headlinesTitle,
-                              style: GoogleFonts.poppins(fontWeight: FontWeight.w500, fontSize: constraints.maxWidth * 0.04,
-                                  color: Colors.red
-                              ),
+                          Expanded(child: SingleChildScrollView(
+                            child: Text(_headlinesTitle,
+                                style: GoogleFonts.poppins(fontWeight: FontWeight.w500, fontSize: constraints.maxWidth * 0.04,
+                                ),
                             ),
-                            ]
                           ),
-                            flex: 1,
+                            flex: 2,
                           ),
-                          // SizedBox(height: 1,),
+                          SizedBox(height: 3,),
                           Expanded(child: SingleChildScrollView(
                             child: Text(_newsDescription,
                               style: GoogleFonts.poppins(fontWeight: FontWeight.w500, fontSize: constraints.maxWidth * 0.02),

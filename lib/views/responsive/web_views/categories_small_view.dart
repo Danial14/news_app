@@ -7,9 +7,11 @@ import 'package:news_app/views/responsive/web_views/categories_medium_view.dart'
 import 'package:news_app/views/responsive/web_views/web_app_drawer.dart';
 import 'package:provider/provider.dart';
 
+import '../../../constants/constants.dart';
 import '../../../utils/route_util.dart';
 import '../../../view_model/categories_view_model.dart';
 import 'extra_large_category_web.dart';
+import 'extra_large_detail_web.dart';
 
 class CategoriesSmallView extends StatefulWidget {
   const CategoriesSmallView({super.key});
@@ -109,108 +111,119 @@ class _CategoriesSmallViewState extends State<CategoriesSmallView> {
                         builder: (context, news, ch) {
                           var data = news.getCategoriesHeadLines;
                           return ListView.builder(itemBuilder: (ctx, position) {
-                            return Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 5, vertical: 5),
-                              child: Row(
-                                children: <Widget>[
-                                  Expanded(flex: 3, child: Container(
-                                    height: constraints.maxHeight * 0.3,
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(15),
-                                      child: data.articles![position]
-                                          .urlToImage != null
-                                          ? CachedNetworkImage(
-                                        imageUrl: data.articles![position]
-                                            .urlToImage,
-                                        fit: BoxFit.cover,
-                                        placeholder: (ctx, st) {
-                                          return SpinKitCircle(color: Colors
-                                              .blue,);
-                                        },
-                                        errorWidget: (ctx, st, ob) {
-                                          return Icon(Icons.error, color: Colors
-                                              .red,);
-                                        },
-                                      )
-                                          :
-                                      Center(
-                                        child: Text(
-                                          "Image not found 404",
-                                          style: GoogleFonts.italiana(
-                                              fontSize: 24,
-                                              fontWeight: FontWeight.w600
+                            return InkWell(
+                              onTap: (){
+                                Navigator.of(context).push(RouteUtil.createRoute(ExtraLargeWebDetailView(data.articles![position].title!,
+                                    data.articles![position].description!,
+                                    data.articles![position].source!.name,
+                                    DateFormat.yMMMd("en_US").format(DateTime.parse(data.articles![position].publishedAt!)),
+                                    data.articles![position].urlToImage,
+                                    Constants.ROUTE_CATEGORY
+                                )));
+                              },
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 5, vertical: 5),
+                                child: Row(
+                                  children: <Widget>[
+                                    Expanded(flex: 3, child: Container(
+                                      height: constraints.maxHeight * 0.3,
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(15),
+                                        child: data.articles![position]
+                                            .urlToImage != null
+                                            ? CachedNetworkImage(
+                                          imageUrl: data.articles![position]
+                                              .urlToImage,
+                                          fit: BoxFit.cover,
+                                          placeholder: (ctx, st) {
+                                            return SpinKitCircle(color: Colors
+                                                .blue,);
+                                          },
+                                          errorWidget: (ctx, st, ob) {
+                                            return Icon(Icons.error, color: Colors
+                                                .red,);
+                                          },
+                                        )
+                                            :
+                                        Center(
+                                          child: Text(
+                                            "Image not found 404",
+                                            style: GoogleFonts.italiana(
+                                                fontSize: 24,
+                                                fontWeight: FontWeight.w600
+                                            ),
                                           ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                  ),
-                                  SizedBox(width: 5,),
-                                  Expanded(child: Container(
-                                    height: constraints.maxHeight * 0.3,
-                                    child: Column(
-                                      children: <Widget>[
-                                        Expanded(
-                                          flex: 8,
-                                          child: Text(
-                                            data.articles![position].title!,
-                                            style: GoogleFonts.poppins(
-                                                fontWeight: FontWeight.w600,
-                                                fontSize: 18
+                                    ),
+                                    SizedBox(width: 5,),
+                                    Expanded(child: Container(
+                                      height: constraints.maxHeight * 0.3,
+                                      child: Column(
+                                        children: <Widget>[
+                                          Expanded(
+                                            flex: 8,
+                                            child: Text(
+                                              data.articles![position].title!,
+                                              style: GoogleFonts.poppins(
+                                                  fontWeight: FontWeight.w600,
+                                                  fontSize: 18
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                        /*ListTile(
-                                                        leading: Text(data.articles![position].source!.id!,
-                                                          overflow: TextOverflow.ellipsis,
-                                                        ),
-                                                        trailing: Text(DateFormat.yMMMd("en_US").format(DateTime.parse(data.articles![position].publishedAt!))),
-                                                        minLeadingWidth: 30,
-                                                      )*/
-                                        Expanded(
-                                          child: Row(
-                                            children: [
-                                              Expanded(child: FittedBox(
-                                                child: Text(
-                                                  data.articles![position]
-                                                      .source!.name,
-                                                  style: TextStyle(
-                                                      fontSize: 18,
-                                                      fontWeight: FontWeight
-                                                          .w700
-                                                  ),
-                                                ),
-                                                fit: BoxFit.contain,
-                                                alignment: Alignment.centerLeft,
-                                              ),
-                                                //flex: 2,
-                                              ),
-                                              //SizedBox(width: 5,),
-                                              Expanded(child: Container(
-                                                  alignment: Alignment
-                                                      .centerRight,
+                                          /*ListTile(
+                                                          leading: Text(data.articles![position].source!.id!,
+                                                            overflow: TextOverflow.ellipsis,
+                                                          ),
+                                                          trailing: Text(DateFormat.yMMMd("en_US").format(DateTime.parse(data.articles![position].publishedAt!))),
+                                                          minLeadingWidth: 30,
+                                                        )*/
+                                          Expanded(
+                                            child: Row(
+                                              children: [
+                                                Expanded(child: FittedBox(
                                                   child: Text(
-                                                      DateFormat.yMMMd("en_US")
-                                                          .format(
-                                                          DateTime.parse(data
-                                                              .articles![position]
-                                                              .publishedAt!)))))
-                                            ],
-                                            mainAxisAlignment: MainAxisAlignment
-                                                .spaceEvenly,
-                                          ),
-                                        )
-                                      ],
-                                      mainAxisAlignment: MainAxisAlignment
-                                          .start,
-                                      crossAxisAlignment: CrossAxisAlignment
-                                          .start,
+                                                    data.articles![position]
+                                                        .source!.name,
+                                                    style: TextStyle(
+                                                        fontSize: 18,
+                                                        fontWeight: FontWeight
+                                                            .w700
+                                                    ),
+                                                  ),
+                                                  fit: BoxFit.contain,
+                                                  alignment: Alignment.centerLeft,
+                                                ),
+                                                  //flex: 2,
+                                                ),
+                                                //SizedBox(width: 5,),
+                                                Expanded(child: Container(
+                                                    alignment: Alignment
+                                                        .centerRight,
+                                                    child: Text(
+                                                        DateFormat.yMMMd("en_US")
+                                                            .format(
+                                                            DateTime.parse(data
+                                                                .articles![position]
+                                                                .publishedAt!)))))
+                                              ],
+                                              mainAxisAlignment: MainAxisAlignment
+                                                  .spaceEvenly,
+                                            ),
+                                          )
+                                        ],
+                                        mainAxisAlignment: MainAxisAlignment
+                                            .start,
+                                        crossAxisAlignment: CrossAxisAlignment
+                                            .start,
+                                      ),
                                     ),
-                                  ),
-                                    flex: 4,
-                                  )
-                                ],
+                                      flex: 4,
+                                    )
+                                  ],
+                                ),
                               ),
                             );
                           },

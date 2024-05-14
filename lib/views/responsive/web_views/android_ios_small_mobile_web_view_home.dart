@@ -7,10 +7,13 @@ import 'package:news_app/views/responsive/web_views/categories_small_view.dart';
 import 'package:news_app/views/responsive/web_views/web_app_drawer.dart';
 import 'package:provider/provider.dart';
 
+import '../../../constants/constants.dart';
 import '../../../utils/route_util.dart';
 import '../../../view_model/news_view_model.dart';
+import '../../news_details.dart';
 import 'android_ios_large_tablet_web_view_home.dart';
 import 'android_ios_medium_mobile_tablet_web_view_home.dart';
+import 'extra_large_detail_web.dart';
 import 'extra_large_devices_web_view_home.dart';
 import 'large_devices_web_view_home.dart';
 
@@ -119,9 +122,13 @@ class _AndroidIosSmallMobileWebViewHomeState extends State<AndroidIosSmallMobile
                               itemBuilder: (ctx, position){
                               return InkWell(
                                 onTap: (){
-                                  /*Navigator.of(context).push(MaterialPageRoute(builder: (ctx){
-                                    return NewsDetails(data.articles![position]);
-                                  }));*/
+                                  Navigator.of(context).push(RouteUtil.createRoute(ExtraLargeWebDetailView(data.articles![position].title!,
+                                      data.articles![position].description!,
+                                      data.articles![position].source!.name,
+                                      DateFormat.yMMMd("en_US").format(DateTime.parse(data.articles![position].publishedAt!)),
+                                      data.articles![position].urlToImage,
+                                      Constants.ROUTE_CATEGORY
+                                  )));
                                 },
                                 child: Container(
                                   decoration: BoxDecoration(),
@@ -200,11 +207,13 @@ class _AndroidIosSmallMobileWebViewHomeState extends State<AndroidIosSmallMobile
                                   children: <Widget>[
                                     Expanded(child: InkWell(
                                       onTap: (){
-                                        /*Navigator.of(context).push(MaterialPageRoute(
-                                            builder: (ctx){
-                                              return NewsDetails(data.articles![position]);
-                                            }
-                                        ));*/
+                                        Navigator.of(context).push(RouteUtil.createRoute(ExtraLargeWebDetailView(data.articles![position].title!,
+                                            verticalList[position].description!,
+                                            verticalList[position].source!.name,
+                                            DateFormat.yMMMd("en_US").format(DateTime.parse(verticalList[position].publishedAt!)),
+                                            verticalList[position].urlToImage,
+                                            Constants.ROUTE_CATEGORY
+                                        )));
                                       },
                                       child: Container(
                                         height: size.height * 0.3,
