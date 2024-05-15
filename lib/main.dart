@@ -4,9 +4,7 @@ import 'package:flutter/material.dart';
 //import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 import 'package:news_app/view_model/categories_view_model.dart';
 import 'package:news_app/view_model/news_view_model.dart';
-import 'package:news_app/views/responsive/mobile_views/android_mobile_views/android_mobile_view.dart';
 import 'package:news_app/views/responsive/responsive_views_manager.dart';
-import 'package:news_app/views/responsive/tablet_views/android_tablet_views/android_portrait_tablet_large_mobile_view.dart';
 import 'package:news_app/views/responsive/web_views/extra_large_webviews.dart';
 import 'package:provider/provider.dart';
 //import 'dart:ui_web';
@@ -52,7 +50,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
           useMaterial3: true,
         ),
-        home: ResponsiveViewManager(AndroidMobileView(), ExtraLargeWebView(), AndroidPortraitTabletAndLargeMobileView()),
+        home: ResponsiveViewManager(),
       ),
       providers: [
         ChangeNotifierProvider(create: (ctx){

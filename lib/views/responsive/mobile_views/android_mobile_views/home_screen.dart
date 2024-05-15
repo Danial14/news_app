@@ -135,7 +135,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                           padding: EdgeInsets.symmetric(horizontal: size.height * .02),
                                           child: data.articles![position].urlToImage != null ? ClipRRect(
                                             child: CachedNetworkImage(imageUrl: data.articles![position].urlToImage,
-                                            fit: BoxFit.cover,
+                                            fit: BoxFit.fill,
                                               placeholder: (ctx, st){
                                               return SpinKitCircle(color: Colors.blue,);
                                               },
@@ -153,7 +153,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                           ),
                                           child: Container(
                                             width: size.width * 0.5,
-                                            height: size.height * 0.10,
+                                            height: size.height * 0.25,
                                             child: Column(
                                               crossAxisAlignment: CrossAxisAlignment.start,
                                               children: <Widget>[
@@ -201,7 +201,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         onTap: (){
                                           Navigator.of(context).push(MaterialPageRoute(
                                             builder: (ctx){
-                                              return NewsDetails(data.articles![position]);
+                                              return NewsDetails(verticalList[position]);
                                             }
                                           ));
                                           },
@@ -331,7 +331,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                padding: EdgeInsets.symmetric(horizontal: size.height * .02),
                                                child: data.articles![position].urlToImage != null ? ClipRRect(
                                                  child: CachedNetworkImage(imageUrl: data.articles![position].urlToImage,
-                                                   fit: BoxFit.cover,
+                                                   fit: BoxFit.fill,
                                                    placeholder: (ctx, st){
                                                      return SpinKitCircle(color: Colors.blue,);
                                                    },
@@ -353,10 +353,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                                    child: Column(
                                                      crossAxisAlignment: CrossAxisAlignment.start,
                                                      children: <Widget>[
-                                                       Expanded(child: Padding(child: SingleChildScrollView(
-                                                         child: Text(data.articles![position].title!,
+                                                       Expanded(child: Padding(child: Wrap(
+                                                         children: [Text(data.articles![position].title!,
                                                            style: GoogleFonts.poppins(fontWeight: FontWeight.w500, fontSize: 18),
-                                                         ),
+                                                         )],
                                                        ),
                                                          padding: EdgeInsets.only(left: 16, top: 5),
                                                        ),
@@ -364,13 +364,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                                        ),
                                                        Expanded(
                                                          flex: 1,
-                                                         child: Padding(
-                                                           padding: EdgeInsets.only(top: 30),
-                                                           child: ListTile(
+                                                         child: ListTile(
                                                              leading: Text(data.articles![position].source!.name,style: TextStyle(color: Colors.blue),),
                                                              trailing: Text(DateFormat.yMMMd("en_US").format(DateTime.now())),
                                                            ),
-                                                         ),
                                                        )
                                                      ],
                                                    ),
@@ -397,7 +394,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                onTap: (){
                                                  Navigator.of(context).push(MaterialPageRoute(
                                                      builder: (ctx){
-                                                       return NewsDetails(data.articles![position]);
+                                                       return NewsDetails(verticalList[position]);
                                                      }
                                                  ));
                                                },
@@ -438,7 +435,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                      child: Text(verticalList[position].title!,
                                                        style: GoogleFonts.poppins(
                                                            fontWeight: FontWeight.w600,
-                                                           fontSize: 18
+                                                           fontSize: 16
                                                        ),
                                                      ),
                                                    ),
@@ -465,7 +462,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                            //flex: 2,
                                                          ),
                                                          //SizedBox(width: 5,),
-                                                         Expanded(child: Container(alignment: Alignment.centerRight,child: Text(DateFormat.yMMMd("en_US").format(DateTime.parse(verticalList[position].publishedAt!)))))
+                                                         Expanded(child: Container(alignment: Alignment.centerRight,child: FittedBox(fit: BoxFit.contain,alignment: Alignment.centerLeft,child: Text(style: TextStyle(fontWeight: FontWeight.w700,fontSize: 18),DateFormat.yMMMd("en_US").format(DateTime.parse(verticalList[position].publishedAt!))))))
                                                        ],
                                                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                                      ),

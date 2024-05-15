@@ -3,13 +3,15 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:news_app/views/responsive/mobile_views/signup.dart';
 import 'package:page_transition/page_transition.dart';
 
-import 'home_screen.dart';
+import 'android_mobile_views/home_screen.dart';
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({super.key});
+  late final Widget _whichScreenToNavigate;
+  SplashScreen(Widget whichScreenToNavigate){
+    this._whichScreenToNavigate = whichScreenToNavigate;
+  }
   @override
   State<SplashScreen> createState() => _SplashScreenState();
 }
@@ -20,7 +22,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Timer(Duration(seconds: 5), (){
       // switch to home screen
       Navigator.of(context).pushReplacement(
-        PageTransition(child: HomeScreen(), type: PageTransitionType.rightToLeft, duration: Duration(seconds: 4))
+        PageTransition(child: widget._whichScreenToNavigate, type: PageTransitionType.rightToLeft, duration: Duration(seconds: 4))
       );
     });
     super.initState();

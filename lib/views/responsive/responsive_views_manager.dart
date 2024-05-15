@@ -1,9 +1,10 @@
 import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:news_app/views/responsive/mobile_views/android_mobile_views/android_mobile_view.dart';
-import 'package:news_app/views/responsive/tablet_views/android_tablet_views/android_portrait_tablet_large_mobile_view.dart';
+import 'package:news_app/views/responsive/mobile_views/android_mobile_views/home_screen.dart';
+import 'package:news_app/views/responsive/mobile_views/splash_screen.dart';
 import 'package:news_app/views/responsive/tablet_views/android_tablet_views/extralarge_tablet.dart';
+import 'package:news_app/views/responsive/tablet_views/android_tablet_views/small_tablet_medium_mobile.dart';
 import 'package:news_app/views/responsive/web_views/android_ios_large_tablet_web_view_home.dart';
 import 'package:news_app/views/responsive/web_views/android_ios_medium_mobile_tablet_web_view_home.dart';
 import 'package:news_app/views/responsive/web_views/android_ios_small_mobile_web_view_home.dart';
@@ -16,14 +17,6 @@ import 'package:news_app/views/responsive/web_views/testscreen.dart';
 import 'package:news_app/views/responsive/web_views/web_splash.dart';
 
 class ResponsiveViewManager extends StatelessWidget {
-  late final AndroidMobileView _androidMobileView;
-  late final ExtraLargeWebView _desktopWebView;
-  late final AndroidPortraitTabletAndLargeMobileView _androidPortraitTabletAndLargeMobileView;
-  ResponsiveViewManager(AndroidMobileView androidMobileView, ExtraLargeWebView desktopWebView, AndroidPortraitTabletAndLargeMobileView androidPortraitTabletAndLargeMobileView){
-    _androidMobileView = androidMobileView;
-    _desktopWebView = desktopWebView;
-    _androidPortraitTabletAndLargeMobileView = androidPortraitTabletAndLargeMobileView;
-  }
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (ctx, constraints){
@@ -100,14 +93,14 @@ class ResponsiveViewManager extends StatelessWidget {
         if(constraints.maxWidth < 600){
           // android mobile views handler
           print("small mobile");
-          return _androidMobileView;
+          return SplashScreen(HomeScreen());
         }
-        else if(constraints.minWidth >= 600 && constraints.minWidth < 768){
+        else if(constraints.maxWidth >= 600 && constraints.maxWidth < 768){
           // handler for android portrait tablets and large mobiles
           print("large mobile");
-          return _androidPortraitTabletAndLargeMobileView;
+          return SplashScreen(SmallTabletAndMediumMobileHome());
         }
-        else if(constraints.minWidth >= 768 && constraints.minWidth < 992){
+        else if(constraints.maxWidth >= 768 && constraints.maxWidth < 992){
           // web handler for medium devices such as large tablets
           print("large tablet");
           return Container(
@@ -116,10 +109,13 @@ class ResponsiveViewManager extends StatelessWidget {
             color: Colors.yellow,
           );
         }
-        else if(constraints.minWidth >= 992){
+        else if(constraints.maxWidth >= 992 && constraints.maxWidth < 1200){
           // android handler for extra large devices such as very large tablets, laptops, desktops
           print("very large tablet");
           return ExtraLargeTablet();
+        }
+        else if(constraints.maxWidth >= 1200){
+
         }
       }
       else if(Platform.isIOS){
