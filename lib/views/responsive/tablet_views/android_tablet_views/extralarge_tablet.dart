@@ -251,7 +251,7 @@ class _ExtraLargeTabletState extends State<ExtraLargeTablet> {
                                                             imageUrl: data
                                                                 .articles![position]
                                                                 .urlToImage,
-                                                            fit: BoxFit.cover,
+                                                            fit: BoxFit.fill,
                                                             placeholder: (ctx,
                                                                 st) {
                                                               return SpinKitCircle(
@@ -285,14 +285,19 @@ class _ExtraLargeTabletState extends State<ExtraLargeTablet> {
                                                       child: Padding(
                                                           padding: EdgeInsets
                                                               .only(left: 3),
-                                                          child: Text(data
-                                                              .articles![position]
-                                                              .title!,
-                                                            style: GoogleFonts
-                                                                .poppins(
-                                                                fontWeight: FontWeight
-                                                                    .w700,
-                                                                fontSize: 18
+                                                          child: ClipRect(
+                                                            child: Wrap(
+                                                              children: [Text(data
+                                                                  .articles![position]
+                                                                  .title!,
+                                                                style: GoogleFonts
+                                                                    .poppins(
+                                                                    fontWeight: FontWeight
+                                                                        .w700,
+                                                                    fontSize: 16
+                                                                ),
+                                                              ),
+                                                                                                                    ]
                                                             ),
                                                           )),
                                                     ),
@@ -305,7 +310,7 @@ class _ExtraLargeTabletState extends State<ExtraLargeTablet> {
                                                             .articles![position]
                                                             .source!.name,
                                                           style: TextStyle(
-                                                              fontSize: 16,
+                                                              fontSize: 12,
                                                               fontWeight: FontWeight
                                                                   .w700
                                                           ),
@@ -322,7 +327,7 @@ class _ExtraLargeTabletState extends State<ExtraLargeTablet> {
                                                                       .articles![position]
                                                                       .publishedAt!)),
                                                           style: TextStyle(
-                                                              fontSize: 16,
+                                                              fontSize: 12,
                                                               fontWeight: FontWeight
                                                                   .w700
                                                           )

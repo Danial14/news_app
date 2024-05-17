@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:news_app/views/responsive/mobile_views/android_mobile_views/home_screen.dart';
 import 'package:news_app/views/responsive/mobile_views/splash_screen.dart';
 import 'package:news_app/views/responsive/tablet_views/android_tablet_views/extralarge_tablet.dart';
+import 'package:news_app/views/responsive/tablet_views/android_tablet_views/large_tablet.dart';
 import 'package:news_app/views/responsive/tablet_views/android_tablet_views/small_tablet_medium_mobile.dart';
 import 'package:news_app/views/responsive/web_views/android_ios_large_tablet_web_view_home.dart';
 import 'package:news_app/views/responsive/web_views/android_ios_medium_mobile_tablet_web_view_home.dart';
@@ -103,16 +104,12 @@ class ResponsiveViewManager extends StatelessWidget {
         else if(constraints.maxWidth >= 768 && constraints.maxWidth < 992){
           // web handler for medium devices such as large tablets
           print("large tablet");
-          return Container(
-            width: constraints.minWidth,
-            height: constraints.minHeight,
-            color: Colors.yellow,
-          );
+          return SplashScreen(LargeTablet());
         }
         else if(constraints.maxWidth >= 992 && constraints.maxWidth < 1200){
           // android handler for extra large devices such as very large tablets, laptops, desktops
           print("very large tablet");
-          return ExtraLargeTablet();
+          return SplashScreen(ExtraLargeTablet());
         }
         else if(constraints.maxWidth >= 1200){
 
