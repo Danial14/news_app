@@ -8,6 +8,7 @@ import 'package:provider/provider.dart';
 import '../../../../utils/route_util.dart';
 import '../../../../view_model/news_view_model.dart';
 import '../../web_views/categories_large_view.dart';
+import 'medium_tablet_large_mobile_category.dart';
 
 class LargeTablet extends StatefulWidget {
   const LargeTablet({super.key});
@@ -45,10 +46,108 @@ class _LargeTabletState extends State<LargeTablet> {
       body: OrientationBuilder(
         builder: (context, orientation) {
           if(orientation == Orientation.portrait){
-            return Container(
-              width: constraints.width,
-              height: constraints.height,
-              color: Colors.green,
+            return SafeArea(
+              child: FutureBuilder<bool>(
+                  future: _newsViewModel!.fetchInitialHeadlinesNews("bbc-news"),
+                  builder: (ctx, snapshot){
+                    if(snapshot.connectionState == ConnectionState.waiting || !snapshot.data!){
+                      return SpinKitCircle(
+                        color: Colors.blue,
+                        size: 40,
+                      );
+                    }
+                    else{
+                      return Consumer<NewsViewModel>(
+                        builder: (ctx, news, ch){
+                          var data = news.getHeadlines;
+                          print("news length: ${data.articles!.length}");
+                          return Container(
+                            width: MediaQuery.of(context).size.width,
+                            height: MediaQuery.of(context).size.height,
+                            child: ListView.builder(
+                              itemBuilder: (ctx, position){
+                                return InkWell(
+                                  onTap: (){
+                                    /*Navigator.of(context).push(RouteUtil.createRoute(ExtraLargeWebDetailView(data.articles![position].title!,
+                                            data.articles![position].description!,
+                                            data.articles![position].source!.name,
+                                            DateFormat.yMMMd("en_US").format(DateTime.parse(data.articles![position].publishedAt!)),
+                                            data.articles![position].urlToImage,
+                                            Constants.ROUTE_HOME
+                                        )));*/
+                                  },
+                                  child: Padding(
+                                    padding: EdgeInsets.symmetric(horizontal: 8),
+                                    child: Container(
+                                      width: MediaQuery.of(context).size.width,
+                                      height: MediaQuery.of(context).size.height * 0.5,
+                                      child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Expanded(
+                                              flex: 5,
+                                              child: Container(
+                                                child: data.articles![position].urlToImage != null ? ClipRRect(
+                                                  child: CachedNetworkImage(imageUrl: data.articles![position].urlToImage,
+                                                    fit: BoxFit.cover,
+                                                    placeholder: (ctx, st){
+                                                      return SpinKitCircle(color: Colors.blue,);
+                                                    },
+                                                    errorWidget: (ctx, str, obj){
+                                                      return Image.asset("assets/images/404.png", fit: BoxFit.cover,);
+                                                    },
+                                                  ),
+                                                  borderRadius: BorderRadius.circular(15),
+                                                ) : ClipRRect(child: Image.asset("assets/images/404.png", fit: BoxFit.cover,),
+                                                  borderRadius: BorderRadius.circular(15),
+                                                ),
+                                                width: constraints.width,
+                                              ),
+                                            ),
+                                            SizedBox(height: 3,),
+                                            Expanded(
+                                              flex: 2,
+                                              child: Padding(padding: EdgeInsets.only(left: 3),child: Wrap(
+                                                children: [Text(data.articles![position].title!,
+                                                  style: GoogleFonts.poppins(
+                                                      fontWeight: FontWeight.w500,
+                                                      fontSize: 14
+                                                  ),
+                                                )],
+                                              )),
+                                            ),
+                                            SizedBox(height: 12,),
+                                            ListTile(contentPadding: EdgeInsets.only(left: 3),leading: FittedBox(
+                                              child: Text(data.articles![position].source!.name,
+                                                style: TextStyle(
+                                                    fontSize: 16,
+                                                    fontWeight: FontWeight.w700
+                                                ),
+                                              ),
+                                              fit: BoxFit.contain,
+                                              alignment: Alignment.centerLeft,
+                                            ),
+                                              trailing: Text(DateFormat.yMMMd("en_US").format(DateTime.parse(data.articles![position].publishedAt!)),
+                                                  style: TextStyle(
+                                                      fontSize: 16,
+                                                      fontWeight: FontWeight.w700
+                                                  )
+                                              ),
+                                            )
+                                          ]
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              },
+                              itemCount: data.articles!.length,
+                            ),
+                          );
+                        },
+                      );
+                    }
+                  }
+              ),
             );
           }
           return Container(
@@ -87,7 +186,7 @@ class _LargeTabletState extends State<LargeTablet> {
                             padding: EdgeInsets.only(right: 5),
                             child: InkWell(
                               onTap: () {
-                                Navigator.of(context).pushReplacement(RouteUtil.createRoute(CategoriesLargeView()));
+                                Navigator.of(context).pushReplacement(RouteUtil.createRoute(MediumTabletLargeMobileCategory()));
                               },
                               child: Image.asset(
                                 "assets/images/category_icon.png",
