@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../constants/constants.dart';
 import '../../../../utils/route_util.dart';
 import '../../../../view_model/news_view_model.dart';
 import '../../web_views/categories_large_view.dart';
@@ -35,6 +36,7 @@ class _LargeTabletState extends State<LargeTablet> {
     Size constraints = MediaQuery.of(context).size;
     double panelItemsHeight = constraints.height * 0.07;
     print("max height: ${constraints.height}");
+    print("orientation");
     if(constraints.height > 992 && constraints.height < 1200){
       panelItemsHeight = constraints.height * 0.04;
     }
@@ -43,6 +45,62 @@ class _LargeTabletState extends State<LargeTablet> {
       panelItemsHeight = constraints.height * 0.03;
     }
     return Scaffold(
+      appBar: MediaQuery.of(context).orientation == Orientation.portrait ?AppBar(
+        centerTitle: true,
+        title: Text("News", style: GoogleFonts.poppins(fontSize: 24, fontWeight: FontWeight.w700),),
+        leading: IconButton(
+          onPressed: (){
+            /*Navigator.of(context).push(MaterialPageRoute(builder: (ctx){
+              return CategoryScreen();
+            }));*/
+          },
+          icon: Image.asset(Constants.IMAGE_PATH + "category_icon.png",
+            width: 25,
+            height: 25,
+          ),
+        ),
+        actions: <Widget>[
+          PopupMenuButton(itemBuilder: (ctx){
+            return <PopupMenuItem>[
+              PopupMenuItem(child: InkWell(
+                onTap: () async{
+                  Navigator.of(context).pop();
+                  await _newsViewModel!.fetchBbcHeadlinesNews();
+                },
+                child: Container(height: 35,width: constraints.width,child: Text("BBC", style: TextStyle(color: Colors.black))),
+              )),
+              PopupMenuItem(child: InkWell(
+                onTap: () async{
+                  Navigator.of(context).pop();
+                  await _newsViewModel!.fetchAlJazeeraHeadlinesNews();
+                },
+                child: Container(width: constraints.width,height: 35,child: Text("Al Jazeera", style: TextStyle(color: Colors.black))),
+              )),
+              PopupMenuItem(child: InkWell(
+                onTap: () async{
+                  Navigator.of(context).pop();
+                  await _newsViewModel!.fetchCnnHeadlinesNews();
+                },
+                child: Container(height: 35,width: constraints.width,child: Text("CNN", style: TextStyle(color: Colors.black))),
+              )),
+              PopupMenuItem(child: InkWell(
+                onTap: () async{
+                  Navigator.of(context).pop();
+                  await _newsViewModel!.fetchIndependentHeadlinesNews();
+                },
+                child: Container(height: 35,width: constraints.width,child: Text("Independent", style: TextStyle(color: Colors.black))),
+              )),
+              PopupMenuItem(child: InkWell(
+                onTap: () async{
+                  Navigator.of(context).pop();
+                  await _newsViewModel!.fetchReutersHeadlinesNews();
+                },
+                child: Container(height: 35,width: constraints.width,child: Text("Reuters", style: TextStyle(color: Colors.black),)),
+              ))
+            ];
+          })
+        ],
+      ) : null,
       body: OrientationBuilder(
         builder: (context, orientation) {
           if(orientation == Orientation.portrait){
